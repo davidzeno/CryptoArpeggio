@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ArpeggioBlockchain</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <style>
+  body, html {
+      height: 100%;
+      margin: 0;
+  }
+  .bg {
+      /* The image used */
+      background-image: url("arpeggiobg.png");
+
+      /* Full height */
+      height: 100%; 
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: repeat-y;
+      background-size: cover;
+  }
+  </style>  
+  
+  <body class="bg">
+    <div class="container" >
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-center"><b>Arpeggio<br>Blockchain</b></h1>
+        </div>
+	<div class="text-center" >	  
+	  <span class="loaders"></span>
+	</div>
+	<div class="text-center" id="noMetaMaskDiv">
+	  <h2>You’ll need a safe place to store all of your CryptoArpeggios!</h2><h4>The perfect place is in a secure wallet like MetaMask. This will also act as your login to ArpeggioBlockchain (no extra password needed).</h4>
+	  <button onclick="window.open('https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/','_blank')" class="btn btn-primary" type="button">Install MetaMask</button>
+	</div>      
+	<div class="text-center" id="signMetaMaskDiv">
+	  <h2>Your MetaMask is locked</h2><h4>Simply open MetaMask and follow the instructions to unlock it.</h4>
+	</div>      
+	<div class="text-center" id="switchNetworkDiv">
+	  <h2>Oops, you’re on the wrong network</h2><h4><b>(<span class="currentNetwork">?</span>)<br><br></b>Simply open MetaMask and switch over to the <b><span class="contractNetwork">?</span></b></h4>
+	</div>      
+	<div class="text-center" id="noContractDiv">
+	  <h2>Oops, no smart contract deployed.</h2>
+	</div>      
+        <div id="content" class="row">
+	  <div class="col-sm-6 col-sm-push-3 col-md-4 col-md-push-4" id="mainDiv">        
+
+	    <div class="panel panel-default">
+	      <div class="panel-heading">
+		<h3 class="panel-title">CryptoArpeggio Wallet</h3>
+	      </div>
+	      <div class="panel-body">
+		<h4>CryptoArpeggios</h4>
+		<strong>Account</strong>: <span class="admin"></span><br> <span class="APGAccount">?</span><br>
+		<strong>Balance</strong>:<br> <span class="APGBalance">?</span> CryptoArpeggios
+		<span class="manage"></span>
+		<div id="transfer">
+		  <hr><h4>Transfer CryptoArpeggios</h4>		
+		  <form onSubmit="App.handleTransfer(); return false;" role="form2">
+		    <div class="form-group">
+		      <div class="input-group">
+			<input id="APGTransferAddress" class="form-control" type="text" placeholder="Please type a VALID recipient address" />
+			<input id="APGTransferAmount" class="form-control" type="number" placeholder="Please type amount" name="number" min="1" pattern="[0-9]"/>
+			  <button type="submit" class="btn btn-primary">Transfer Tokens</button>
+		      </div>
+		    </div>
+		  </form>		
+		</div>
+		
+	      </div>
+	    </div>
+
+	    <div id="ico" class="panel panel-default">
+	      <div class="panel-heading">
+<!-- 		<h3 class="panel-title">Initial Coin Offering (ICO)</h3> -->
+		<h3 class="panel-title">Initial Ticket Offering (ITO)</h3>
+		</div>
+	      <div class="panel-body">		
+		Each participant of this Initial Ticket Offering will be given a special and unique 'CryptoArpeggio' as crypto ticket which can be used as entry into:<br><br>
+		<b>[Artist to be announced]<br>
+		Hard Rock Hotel & Casino<br>Atlantic City, Nevada, USA<br>
+		<p>Saturday, June 30 2018 5:00 PM<br><br></b>
+		Ticket price is <span class="token-price"></span> Ether.<br>You currently have <span class="APGBalance">?</span>&nbsp;CryptoArpeggios.
+		</p><br/>
+		<form onSubmit="App.buyTokens(); return false;" role="form">
+		  <div class="form-group">
+		      <p>CryptoArpeggios can be used to pay for concert tickets when available.<br>How many CryptoArpeggios?
+		    <div class="input-group">
+		      <input id="numberOfTokens" class="form-control" type="number" name="number" value="1" min="1" pattern="[0-9]"></input>
+<!-- 			&nbsp;Row A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="_tokenPrice=0;" type="submit" class="btn btn-primary">1.0 ETH</button><br> -->
+<!--			&nbsp;Row B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="_tokenPrice=1;" type="submit" class="btn btn-primary">0.5 ETH</button><br>		
+			&nbsp;Row C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="_tokenPrice=2;" type="submit" class="btn btn-primary">0.25 ETH</button><br>
+			&nbsp;Row D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="_tokenPrice=3;" type="submit" class="btn btn-primary">0.125 ETH</button><br>
+			&nbsp;Row E&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="_tokenPrice=4;" type="submit" class="btn btn-primary">0.0625 ETH</button><br>
+			&nbsp;Row F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="_tokenPrice=5;" type="submit" class="btn btn-primary">0.03125 ETH</button><br>
+			&nbsp;Row G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="_tokenPrice=6;" type="submit" class="btn btn-primary">0.015625 ETH</button><br>
+			&nbsp;Row G&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="_tokenPrice=7;" type="submit" class="btn btn-primary">0.0078125 ETH</button><br>-->
+			<span class="input-group-btn">
+			  <button onclick="_tokenPrice=8;" type="submit" class="btn btn-primary">0.01 ETH</button><br>
+			</span>
+		      </div>
+		  </div>
+		</form>
+		<br>
+		<div class="progress">
+		  <div id="progress" class="progress-bar progress-bar-striped active" aria-valuemin="0" aria-valuemax="100">
+		  </div>
+		</div>
+		<p><span class="tokens-sold"></span> / <span class="tokens-available"></span> tokens sold</p>
+		<hr>
+		<p id="accountAddress"></p>
+		
+		
+		
+		<div>
+		  <h6><br><p>CryptoArpeggioToken Sale Address: <span class="tokensaleaddress"></span>
+		  <br>CryptoArpeggioToken Address: <span class="tokenaddress"></span></p></h6>
+		</div>
+	      </div>
+	    </div>
+
+	    
+	    <div id="sellmusic" class="panel panel-default">
+	      <div class="panel-heading">
+		<h3 class="panel-title">Sell your Digital Music Here!</h3>
+		</div>
+	      <div class="panel-body">
+		<form onSubmit="App.createSeedToken(); return false;" role="form">
+		      <input id="_pic" class="form-control" type="text" placeholder="Link to Album picture (IPFS)" />
+		      <input id="_title" class="form-control" type="text" placeholder="Title" />
+		      <input id="_artist" class="form-control" type="text" placeholder="Artist"/>
+		      <input id="_price" class="form-control" type="text" placeholder="Price in Ξ"/>
+		      <input id="_data" class="form-control" type="text" placeholder="Link to binary data (IPFS)" />
+		      <button type="submit" class="btn btn-primary">Start selling this song</button><br>
+		</form>
+	      </div>
+	    </div>
+	    
+	    
+	    <div id="ownedmusic" class="panel panel-default">
+	      <div class="panel-heading">
+		<h3 class="panel-title">My Digital Music (<span class="APGBalance">?</span>)</h3>
+		</div>
+	      <div class="panel-body">		
+		<ol>
+		<span class="myMusic"></span>
+		</ol>
+	      </div>
+	    </div>
+
+	    <div id="music" class="panel panel-default">
+	      <div class="panel-heading">
+		<h3 class="panel-title">Digital Music</h3>
+		</div>
+	      <div class="panel-body">		
+		Best Sellers (<span class="AdminBalance">?</span>)<br>
+		<form onSubmit="App.buyMusic(); return false;" role="form">
+		  <ol>
+		  <span class="available"></span>
+		  </ol>
+		</form>
+	      </div>
+	    </div>
+	    
+	    <div id="services" class="panel panel-default">
+	      <div class="panel-heading">
+		<h3 class="panel-title">Services</h3>
+	      </div>
+	      <div class="panel-body">
+		<h4>Music Songs</h4>
+		<button class="btn btn-primary" id="buyMusic" type="button">Buy Music Songs</button>
+	      </div>
+	      <div class="panel-body">
+		<h4>Concert Tickets</h4>
+		<button class="btn btn-primary" id="buyTickets" type="button">Buy Concert Tickets</button>
+	      </div>
+	      <div class="panel-body">
+		<h4>CryptoArpeggioGames</h4>
+		<button class="btn btn-primary" id="playGames" type="button">Play Games</button>
+	      </div>
+	    </div>
+	  </div>	
+	</div>
+      </div>      
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
