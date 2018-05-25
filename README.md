@@ -1,6 +1,6 @@
 
 # CryptoArpeggio
-Decentralize the music industry - building a smart contract application that disrupt the world of music...
+Decentralize the music industry - building an Ethereum Smart Contract dApp that disrupt the world of music...
 
 ## Powered by
 [![N|Solid](https://openzeppelin.org/img/openzeppelin-logo.png)](https://openzeppelin.org)
