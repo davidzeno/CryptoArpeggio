@@ -1,6 +1,9 @@
 
 # CryptoArpeggio
-Decentralize the music industry - build a smart contract applications that disrupt the world of music
+Decentralize the music industry - building a smart contract application that disrupt the world of music...
+
+**Video Demo:**
+https://youtu.be/bimtLHxAcR4
 
 Follow the steps below to download, install, and run this project.
 
