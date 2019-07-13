@@ -3,7 +3,7 @@
 Decentralize the music industry - building an Ethereum Smart Contract dApp that disrupt the world of music...
 
 ## Powered by
-[![N|Solid](https://openzeppelin.org/img/openzeppelin-logo.png)](https://openzeppelin.org)
+[![N|Solid](https://webpatient.org/oz.png)](https://openzeppelin.org)
 
 **Video Demo:**
 https://youtu.be/bimtLHxAcR4
